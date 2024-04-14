@@ -3,5 +3,5 @@ export interface GetUsersTypes {
     name: string
     email: string
     type: string
-    createed_at: string
+    createed_at?: string
 }
