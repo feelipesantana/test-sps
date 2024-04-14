@@ -6,27 +6,27 @@ import { prisma } from '../../services/prisma';
 
 const router = express.Router();
 
-router.post("/", authenticate, async (req, res) => {
+router.delete("/:id", authenticate, async (req, res) => {
     const schemaDeleteUser = z.object({
-        email: z.string().email(),
+        id: z.string(),
     })
     const {
-        email,
-    } = schemaDeleteUser.parse(req.body)
+        id,
+    } = schemaDeleteUser.parse(req.params)
 
     const verifyUserExists = await prisma.user.findUnique({
         where: {
-            email
+            id
         }
     })
 
     if (!verifyUserExists) {
-        return res.status(400).send('User does not exist!')
+        return res.status(404).send('User does not exist!')
     }
 
     const deleteUser = await prisma.user.delete({
         where: {
-            email
+            id
         }
     })
 
