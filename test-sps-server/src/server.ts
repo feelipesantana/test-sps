@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 
 import createUser from './http/routes/create-user';
+import deleteUser from './http/routes/delete-user';
 import auth from './http/routes/auth';
 
 import { createUserPrisma } from './utils/createUserPrisma';
@@ -21,6 +22,8 @@ createUserPrisma("admin", 'admin@spsgroup.com.br', 'admin', '1234')
 
 app.use('/users', createUser)
 app.use('/auth', auth)
+app.use('/delete-user', deleteUser)
+
 
 
 app.listen(PORT, () => {
