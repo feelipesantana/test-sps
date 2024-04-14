@@ -1,9 +1,9 @@
-import { api } from '@/services/api'
 
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import { cookies } from 'next/headers'
 
 import CredentialsProvider from 'next-auth/providers/credentials'
+import { http } from '@/services/api';
 
 
 const nextAuthOptions: NextAuthOptions = {
@@ -16,14 +16,13 @@ const nextAuthOptions: NextAuthOptions = {
             },
 
             async authorize(credentials, req) {
-                const response = await api.post('/auth', {
+                const response = await http.post('/auth', {
                     email: credentials?.email,
                     password: credentials?.password
                 });
                 const user = await response.data
 
                 if (user) {
-
                     return user
                 }
                 return null
