@@ -13,13 +13,19 @@ import auth from './http/routes/auth';
 import { createUserPrisma } from './utils/createUserPrisma';
 
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3333
 
 const app = express();
 dotenv.config();
 
 
 app.use(cors());
+app.use(cors({
+  origin: '*', // Allow requests from any origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allow specific HTTP methods
+  allowedHeaders: 'Content-Type,Authorization', // Allow specific headers
+}));
+
 app.use(express.json());
 createUserPrisma("admin", 'admin@spsgroup.com.br', 'admin', '1234')
 app.use('/users', createUser)
@@ -31,5 +37,5 @@ app.use('/auth', auth)
 
 
 app.listen(PORT, () => {
-  console.log("Server is running on http://localhost:3000");
+  console.log("Server is running on http://localhost:3333");
 });
