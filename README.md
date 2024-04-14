@@ -46,41 +46,23 @@ This project was developed with the following technologies:
 - SQLite
   
 
-## ✨ Link
 ```
-$ https://facilita-juridico.vercel.app/
-
-```
-
 ## ⚙️ How to run
 
-```
 Clonar projeto com : Git clone
 
 Rodar Backend /test-sps-server
 * Instalar dependencias : npm i
 * Rodar bd prisma - npx prisma migrate
-* Aquivo .env
+* Atualizar .env.exemple para .env
+>> npm run dev
 
+Rodar Frontend /test-sps-next
+* Instalar dependencias : npm i
+* Atualizar .env.exemple para .env
+>> npm run dev
 
-Pasta - /text-sps-server
-
-Criar Aquivo .env
-DATABASE_URL = postgresql://user:pass@localhost:5432/nome_banco_de_dados?schema=public
-
-npm i
-npx prisma migrate dev
-npm run dev
-
-(Frontend)
-Pasta - /client
-
-.env (Configurar chamada do backend)
-VITE_BASE_URL=http://127.0.0.1:3333
-
-npm i
-npm run dev
-
+READY 🚀
 
 ```
 
