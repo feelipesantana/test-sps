@@ -3,9 +3,10 @@ import { redirect } from "next/navigation";
 import { nextAuthOptions } from "./api/auth/[...nextauth]/route";
 import { Input } from "@/components/ui/input";
 import { LoginForm } from "@/components/LoginForm";
+import { SessionType } from "@/@types/session-types";
 
 export default async function Login() {
-  const session = await getServerSession(nextAuthOptions);
+  const session: SessionType | null = await getServerSession(nextAuthOptions);
   if (session) {
     redirect("/system");
   }

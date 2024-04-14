@@ -5,13 +5,9 @@ import { getUsers } from "@/api/get-users";
 
 import { GetUsersTypes } from "@/@types/get-users-types";
 import { ListUsers } from "@/components/ListUsers";
+import { SessionType } from "@/@types/session-types";
 
-type SessionType = {
-  token: string;
-  id: string;
-  email: string;
-};
-export default async function Home() {
+export default async function System() {
   const session: SessionType | null = await getServerSession(nextAuthOptions);
 
   if (!session) {
