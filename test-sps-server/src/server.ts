@@ -6,6 +6,8 @@ import cors from 'cors';
 import getUsers from './http/routes/get-users';
 import createUser from './http/routes/create-user';
 import deleteUser from './http/routes/delete-user';
+import updateUser from './http/routes/update-user';
+
 import auth from './http/routes/auth';
 
 import { createUserPrisma } from './utils/createUserPrisma';
@@ -22,7 +24,8 @@ app.use(express.json());
 createUserPrisma("admin", 'admin@spsgroup.com.br', 'admin', '1234')
 app.use('/users', createUser)
 app.use('/users', getUsers)
-app.use('/delete-user', deleteUser)
+app.use('/users', deleteUser)
+app.use('/users', updateUser)
 app.use('/auth', auth)
 
 
