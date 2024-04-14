@@ -8,7 +8,7 @@ import { SessionType } from "@/@types/session-types";
 export default async function Login() {
   const session: SessionType | null = await getServerSession(nextAuthOptions);
   if (session) {
-    redirect("/system");
+    redirect("/cms");
   }
   return (
     <main className="flex justify-center items-center">

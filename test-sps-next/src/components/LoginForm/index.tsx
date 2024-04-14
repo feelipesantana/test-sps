@@ -9,6 +9,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
+import { Spinner } from "../Spinner";
 
 const schemaFormZod = z.object({
   email: z
@@ -79,8 +80,9 @@ export function LoginForm() {
           />
         </div>
       </div>
+
       <Button className="w-full" type="submit">
-        Logar
+        {isLoading ? <Spinner /> : <span>Logar</span>}
       </Button>
     </form>
   );

@@ -12,7 +12,7 @@ export function Menu() {
         <div>
           {pathname === "/cms" && (
             <Link
-              href="/system/add"
+              href="/cms/add"
               className="border p-2 rounded-md transition ease duration-200 hover:text-slate-300"
             >
               {" "}

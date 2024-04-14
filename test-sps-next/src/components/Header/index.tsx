@@ -10,12 +10,12 @@ export async function Header() {
   return (
     <div className="w-full h-24 border-b border-slate-600 flex items-center justify-between p-10">
       <div className="flex items-center justify-center gap-4">
-        <Link href="/system" className="text-lg text-slate-500">
+        <Link href="/cms" className="text-lg text-slate-500">
           {" "}
           SPS Group
         </Link>
 
-        <Link href="/system" className="">
+        <Link href="/cms" className="">
           {" "}
           Home
         </Link>
