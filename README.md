@@ -14,7 +14,7 @@
 
 > status: finished 🟢
 
-#### Vite Application
+#### Next.js 14 Application
 
 ## About Project: 
 
