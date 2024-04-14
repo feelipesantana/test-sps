@@ -1,12 +1,5 @@
-import { RefreshCw } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../ui/dialog";
+"use client";
+import { Dialog, DialogContent } from "../ui/dialog";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import {
@@ -27,6 +20,7 @@ import { toast } from "sonner";
 import { getCurrentDate } from "@/utils/current-date";
 import { useOpenModal } from "@/hook/useOpenModal";
 import { useCurrentUser } from "@/hook/useCurrentUser";
+import { useEffect } from "react";
 
 const schemaCreateZod = z.object({
   name: z.string().optional(),
@@ -44,6 +38,7 @@ export function ModalUpdate() {
     handleSubmit,
     register,
     setValue,
+    watch,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(schemaCreateZod),
@@ -59,13 +54,11 @@ export function ModalUpdate() {
           type: data.type,
           password: data.password,
         });
-
-        console.log(response);
         if (response.status === 200) {
           toast("Usuário Atualizado com Sucesso!", {
             description: getCurrentDate(),
             action: {
-              label: "Undo",
+              label: "X",
               onClick: () => console.log("Ok"),
             },
           });
@@ -74,13 +67,12 @@ export function ModalUpdate() {
           toast("Erro ao atualizar usuário!", {
             description: Date.now(),
             action: {
-              label: "Undo",
+              label: "X",
               onClick: () => console.log("Ok"),
             },
           });
         }
       } catch (err) {
-        console.log("Entrou AQUI");
         toast("Erro ao atualizar usuário", {
           description: "Inter Error",
           action: {
@@ -91,6 +83,14 @@ export function ModalUpdate() {
       }
     }
   }
+
+  useEffect(() => {
+    if (openModal && currentUser) {
+      setValue("name", currentUser.name || "");
+      setValue("email", currentUser.email || "");
+    }
+  }, [openModal, currentUser, setValue]);
+
   return (
     <Dialog open={openModal} onOpenChange={setOpenModal}>
       <DialogContent>
@@ -105,6 +105,7 @@ export function ModalUpdate() {
                 type="text"
                 {...register("name")}
                 defaultValue={currentUser.name}
+                onChange={(e) => setValue("name", e.target.value)}
               />
             </div>
 
@@ -113,7 +114,7 @@ export function ModalUpdate() {
               <Input
                 type="email"
                 {...register("email")}
-                defaultValue={currentUser.email}
+                onChange={(e) => setValue("email", e.target.value)}
               />
             </div>
 

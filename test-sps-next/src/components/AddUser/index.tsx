@@ -51,12 +51,11 @@ export function AddUser() {
 
       try {
         const response = await createUser(payload);
-        console.log(response);
         if (response.status === 201) {
           toast("Usuário adicionado com sucesso!", {
             description: getCurrentDate(),
             action: {
-              label: "Undo",
+              label: "X",
               onClick: () => console.log("Ok"),
             },
           });
@@ -65,7 +64,7 @@ export function AddUser() {
           toast("Erro ao adicionar usuário!", {
             description: Date.now(),
             action: {
-              label: "Undo",
+              label: "X",
               onClick: () => console.log("Ok"),
             },
           });

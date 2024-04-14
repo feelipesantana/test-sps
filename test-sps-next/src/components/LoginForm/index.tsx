@@ -32,10 +32,8 @@ export function LoginForm() {
   });
 
   async function handleAuth(data: FormValues) {
-    console.log("teste", data);
     const validateDatas = schemaFormZod.parse(data);
 
-    console.log(validateDatas);
     if (validateDatas) {
       setIsLoading(true);
       try {

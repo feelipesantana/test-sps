@@ -17,7 +17,6 @@ import { UpdateIcon } from "@radix-ui/react-icons";
 import { toast } from "sonner";
 import { getCurrentDate } from "@/utils/current-date";
 import { Toaster } from "../ui/sonner";
-import { ModalUpdate } from "../ModalUpdate";
 import { useOpenModal } from "@/hook/useOpenModal";
 import { useCurrentUser } from "@/hook/useCurrentUser";
 
@@ -56,7 +55,6 @@ export function ListUsers() {
   }
 
   function handleUpdateCurrentId(user: GetUsersTypes) {
-    console.log(user);
     setCurrentUser(user);
     setOpenModal(true);
   }
@@ -104,7 +102,6 @@ export function ListUsers() {
         </TableBody>
       </Table>
       <Toaster />
-      <ModalUpdate />
     </div>
   );
 }
