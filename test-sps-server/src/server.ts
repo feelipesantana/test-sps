@@ -3,6 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
+import getUsers from './http/routes/get-users';
 import createUser from './http/routes/create-user';
 import deleteUser from './http/routes/delete-user';
 import auth from './http/routes/auth';
@@ -19,10 +20,10 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 createUserPrisma("admin", 'admin@spsgroup.com.br', 'admin', '1234')
-
 app.use('/users', createUser)
-app.use('/auth', auth)
+app.use('/users', getUsers)
 app.use('/delete-user', deleteUser)
+app.use('/auth', auth)
 
 
 
