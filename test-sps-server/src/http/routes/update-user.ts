@@ -8,11 +8,17 @@ const router = express.Router();
 
 router.patch("/:id", authenticate, async (req, res) => {
 
+    const schemaDataUser = z.object({
+        name: z.string().optional(),
+        email: z.string().email().optional(),
+        type: z.string().optional(),
+        password: z.string().optional()
+    })
     const schemaUpdateUser = z.object({
         id: z.string(),
     })
     const { id } = schemaUpdateUser.parse(req.params);
-    const updatedFields = req.body;
+    const { name, email, type, password } = schemaDataUser.parse(req.body);
 
 
     const verifyUserExists = await prisma.user.findUnique({
@@ -25,11 +31,17 @@ router.patch("/:id", authenticate, async (req, res) => {
         return res.status(400).send('User does not exist!')
     }
 
+
     const updateUser = await prisma.user.update({
         where: {
             id
         },
-        data: updatedFields
+        data: {
+            name,
+            email: email === verifyUserExists.email ? verifyUserExists.email : email,
+            password,
+            type
+        }
     })
 
     if (!updateUser) {
