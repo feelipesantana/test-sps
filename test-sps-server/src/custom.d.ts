@@ -1,5 +1,5 @@
 declare namespace Express {
     interface Request {
-        user?: any; // Define the 'user' property
+        id?: any; // Define the 'user' property
     }
 }
